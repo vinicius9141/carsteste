@@ -10,7 +10,6 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 
 
 function App() {
-
   const isVisible = localStorage.getItem('isValid')
 
   function exit() {
@@ -24,7 +23,7 @@ function App() {
       {
         isVisible && <ul className='header'>
         <li>
-          <Link to='/login'>Login</Link>
+          <Link to='/'>Login</Link>
         </li>
         <li>
           <Link to='/cadastro'>Cadastro</Link>
@@ -46,7 +45,7 @@ function App() {
      
 
       <Routes>
-        <Route exact path="/login" element={<Login />} > </Route>
+        <Route exact path="/" element={<Login />} > </Route>
       </Routes>
 
       <Routes>
