@@ -6,6 +6,8 @@ import { useEffect, useState } from 'react';
 
 const List = () => {
 
+  const [selectedRows, setSelectedRows] = useState([]);
+
   const [rows, setRows] = useState( [
     { id: 1, model: 'Fiat Mobi', color: 'Branco', license: 'ABC-1234', potency:'59cv', renavam: 12345678910, typeFuel:'Flex', volumeFuel:'10L', priceFuel:'R$ 30,00', actions:'Excluir' },
     { id: 2, model: 'Ford Fiesta', color: 'Prata', license: 'BRA2E19', potency:'90cv', renavam: 11121314151, typeFuel:'Alcool', volumeFuel:'40L', priceFuel:'R$ 60,00', actions:'Excluir' },
@@ -76,8 +78,13 @@ const List = () => {
       width: 160,
       valueGetter: (params) =>
         `${params.row.actions || ''}`,
+        renderCell: (params) => (
+          <Button onClick={() => setSelectedRows([params.id])}>Excluir</Button>
+        ),
     },
   ];
+
+
 
   const saveAlts = () =>{
     localStorage.setItem('rows',  JSON.stringify(rows));
@@ -100,8 +107,15 @@ const List = () => {
     )
   }
 
-  const deleteRow = () =>{
-   
+  const handleRowSelectionModelChange = (newSelection) => {
+    setSelectedRows(newSelection.selectionModel);
+  };
+
+  const deleteRow = (params) =>{
+     const updatedRows = rows.filter((row) => !selectedRows.includes(row.id));
+  setRows(updatedRows);
+  setSelectedRows([]);
+    
   }
 
   useEffect(()=>{
@@ -115,11 +129,12 @@ const List = () => {
         <Button sx={{ marginTop:'20px' , alignItems:'flex-end',width: '20%', marginLeft:'3%'}} variant="contained" color="success" onClick={newFuelSupply}>
             Cadastrar novo abastecimento
         </Button>
-      <Box sx={{ height: 400, width: '100%', flexDirection:'column', justifyContent:'center' , marginTop:'20px', padding:'3%', boxShadow:'rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px'}}>
+      <Box sx={{ height: 500, width: '100%', flexDirection:'column', justifyContent:'center' , marginTop:'20px', padding:'3%', boxShadow:'rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px'}}>
       <DataGrid
        
         rows={rows}
         columns={columns}
+        onRowSelectionModelChange={deleteRow}
         processRowUpdate={handleEditCellChange}
         onProcessRowUpdateError={(e)=>{}}
         initialState={{
