@@ -91,7 +91,7 @@ const List = () => {
   }
 
   const newFuelSupply =  ()=>{
-    console.log('redirecionando para a pag de novo abastecimento')
+   window.location.href= '/cadastroAbastecimento'
   }
 
   const handleEditCellChange = (params) => {
