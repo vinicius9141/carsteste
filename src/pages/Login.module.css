@@ -1,0 +1,55 @@
+.container {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-style: italic;
+  color: #61dbfb;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 34%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: #222426;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.register {
+  font-size: 20px;
+  margin-top: 30px;
+  
+  text-decoration: underline;
+}
+.label_login {
+  text-align: left;
+  width: 55%;
+}
+
+input {
+  width: 57%;
+  height: 8%;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  padding: 3%;
+  margin-bottom: 18px;
+}
+input::placeholder {
+  display: flex;
+  font-size: 18px;
+}
+
+
+@media (max-width: 768px) {
+
+  .content{
+    width: 80%;
+  }
+
+}
