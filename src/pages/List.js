@@ -120,7 +120,7 @@ const List = () => {
 
   useEffect(()=>{
     const _rows = JSON.parse(localStorage.getItem('rows'));
-    if(_rows.length > 0){
+    if(_rows?.length > 0){
       setRows(_rows);
     }
   },[])
